@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS instrutor (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS curso (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    duracaoHoras DOUBLE NOT NULL,
+    instrutorId BIGINT,
+    FOREIGN KEY (instrutorId) REFERENCES instrutor(id)
+);
+
+CREATE TABLE IF NOT EXISTS logCurso (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cursoId BIGINT,
+    titulo VARCHAR(255) NOT NULL,
+    dataCriacao DATETIME NOT NULL,
+    FOREIGN KEY (cursoId) REFERENCES curso(id)
+);
